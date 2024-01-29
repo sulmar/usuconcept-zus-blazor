@@ -1,3 +1,4 @@
+using BlazorSSRSakilaApp.Abstractions;
 using BlazorSSRSakilaApp.Components;
 using BlazorSSRSakilaApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents();
 builder.Services.AddDbContext<SakilaContext>(optionsBuilder => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=sakila;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
+
+builder.Services.AddScoped<IFilmRepository, DbFilmRepository>();
 
 var app = builder.Build();
 

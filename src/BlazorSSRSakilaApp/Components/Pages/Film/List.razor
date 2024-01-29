@@ -1,4 +1,6 @@
 ﻿@page "/films"
+@inject IFilmRepository repository
+@attribute [StreamRendering]
 
 <h3>Films</h3>
 
@@ -35,6 +37,11 @@ else
 
 @code {
 
-   
+    private List<Model.Film> films;
+
+    protected override async Task OnInitializedAsync()
+    {
+        films = await repository.GetAllAsync();
+    }
 
 }
