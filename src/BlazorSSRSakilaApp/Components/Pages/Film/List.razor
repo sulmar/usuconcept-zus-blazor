@@ -3,6 +3,7 @@
 @using Model
 @using Microsoft.EntityFrameworkCore
 @attribute [StreamRendering]
+@inject SakilaContext context
 
 <h3>Films</h3>
 
@@ -38,8 +39,6 @@ else
 }
 
 @code {
-
-    SakilaContext context = new SakilaContext();
 
     private List<Film> films;
 

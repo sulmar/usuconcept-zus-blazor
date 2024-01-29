@@ -6,14 +6,12 @@ namespace BlazorSSRSakilaApp.Infrastructure;
 // dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 public class SakilaContext : DbContext
 {
-    public DbSet<Film> Films { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public SakilaContext(DbContextOptions options) : base(options)
     {
-        optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=sakila;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-        base.OnConfiguring(optionsBuilder);
     }
 
+    public DbSet<Film> Films { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Film>()
