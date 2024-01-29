@@ -11,4 +11,4 @@ Pod wejściu na stronę pod adresem `http://localhost:5000/films` powinna pojawi
 | ADAPTATION HOLES | A Astounding Reflection of a Lumberjack And a Car who must Sink a Lumberjack in A Baloon Factory | 2006 | NC-17 |
 | ... | ... | ... | ... |
 
-Podczas ładowania filmów powinien pojawić się tekst _`Loading films...
+Podczas ładowania filmów powinien pojawić się tekst _`Loading films...`
