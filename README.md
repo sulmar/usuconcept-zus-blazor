@@ -13,3 +13,15 @@ Do rozpoczęcia tego kursu potrzebujesz następujących rzeczy:
 ```bash
 git clone https://github.com/sulmar/usuconcept-zus-blazor
 ```
+
+3. Utwórz bazę danych
+
+```bash
+sqlcmd -S (localdb)\MSSQLLocalDB -d master -E -i sql-server-sakila-schema.sql
+```
+
+4. Załadowuj przykładowane dane
+
+```bash
+sqlcmd -S (localdb)\MSSQLLocalDB -d sakila -E -i sql-server-sakila-insert-data.sql
+```
