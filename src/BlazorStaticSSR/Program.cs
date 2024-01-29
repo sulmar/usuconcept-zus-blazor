@@ -1,4 +1,5 @@
 using BlazorStaticSSR.Components;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,5 +22,7 @@ app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>();
+
+app.MapGet("/greeting", () => new RazorComponentResult<GreetingComponent>());
 
 app.Run();

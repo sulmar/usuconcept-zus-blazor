@@ -1,0 +1,37 @@
+﻿@page "/contact"
+@using BlazorStaticSSR.Model
+
+<h3>Contact</h3>
+
+<EditForm method="post" Model="Message" OnSubmit="SubmitMessage" FormName="message">
+    <div>
+        <label>Subject</label>
+        <InputText @bind-Value="Message.Subject" />        
+    </div>
+    <div>
+        <label>Content</label>
+        <InputText @bind-Value="Message.Content" />
+    </div>
+
+    <button>Send Message</button>
+</EditForm>
+
+@if (submitted)
+{
+    <p>Thank you for your message.</p>
+}
+
+@code {
+
+    // application/x-www-form-urlencoded
+    [SupplyParameterFromForm]
+    Message Message { get; set; } = new();
+
+    bool submitted = false;
+
+    private void SubmitMessage()
+    {
+        submitted = true;
+    }
+
+}
