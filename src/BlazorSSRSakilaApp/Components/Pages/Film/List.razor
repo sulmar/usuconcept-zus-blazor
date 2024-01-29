@@ -1,6 +1,4 @@
 ﻿@page "/films"
-@attribute [StreamRendering]
-@inject SakilaContext context
 
 <h3>Films</h3>
 
@@ -37,11 +35,6 @@ else
 
 @code {
 
-    private List<Film> films;
-
-    protected override async Task OnInitializedAsync()
-    {
-        films = await context.Films.ToListAsync();
-    }
+   
 
 }
