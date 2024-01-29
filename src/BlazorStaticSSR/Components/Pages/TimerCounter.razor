@@ -1,0 +1,25 @@
+﻿@page "/timercounter"
+@attribute [StreamRendering]
+
+<h3>TimerCounter</h3>
+
+<p>
+    Counter is @count
+</p>
+
+@code {
+    private int count;
+
+    protected override async Task OnInitializedAsync()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            await Task.Delay(1000);
+
+            count++;
+
+            StateHasChanged();
+        }
+    }
+
+}
