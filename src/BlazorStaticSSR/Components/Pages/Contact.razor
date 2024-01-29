@@ -3,14 +3,20 @@
 
 <h3>Contact</h3>
 
-<EditForm method="post" Model="Message" OnSubmit="SubmitMessage" FormName="message">
+<EditForm method="post" Model="Message" OnValidSubmit="SubmitMessage" FormName="message">
+
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+
     <div>
         <label>Subject</label>
-        <InputText @bind-Value="Message.Subject" />        
+        <InputText @bind-Value="Message.Subject" />
+        <ValidationMessage For="()=>Message.Subject" class="text-danger" />
     </div>
     <div>
         <label>Content</label>
         <InputText @bind-Value="Message.Content" />
+        <ValidationMessage For="()=>Message.Content" class="text-danger" />
     </div>
 
     <button>Send Message</button>
