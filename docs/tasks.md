@@ -12,3 +12,18 @@ Pod wejściu na stronę pod adresem `http://localhost:5000/films` powinna pojawi
 | ... | ... | ... | ... |
 
 Podczas ładowania filmów powinien pojawić się tekst _`Loading films...`
+
+# Zadanie 2 Lista aktorów
+
+Utwórz aplikację webową **Blazor Web Assembly Standalone**, która wyświetli listę aktorów z bazy danych Sakila.
+
+Pod wejściu na stronę pod adresem `http://localhost:5000/actors` powinna pojawić lista aktorów:
+	
+| First name | Last Name |
+| ---- | ---- |
+| PENELOPE | GUINESS |
+| NICK | WAHLBERG |
+| ED | CHASE |
+| ... | ... |
+
+Podczas ładowania danych powinien pojawić się tekst _`Loading actors...
