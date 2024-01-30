@@ -1,5 +1,7 @@
 ﻿@page "/films"
+@using Microsoft.AspNetCore.Authorization
 @inject ApiFilmService Api
+@attribute [Authorize]
 
 <h3>Films</h3>
 

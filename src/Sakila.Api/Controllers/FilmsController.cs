@@ -7,15 +7,8 @@ namespace Sakila.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class FilmsController : ControllerBase
+public class FilmsController(IFilmRepository repository) : ControllerBase
 {
-    private readonly IFilmRepository repository;
-
-    public FilmsController(IFilmRepository repository)
-    {
-        this.repository = repository;
-    }
-
     // GET /films
     [HttpGet]
     public async Task<ActionResult<List<Film>>> Get()

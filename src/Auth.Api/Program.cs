@@ -14,7 +14,20 @@ builder.Services.AddSingleton<ITokenService, JwtTokenService>();
 
 builder.Services.AddDbContext<AppIdentityContext>(optionsBuilder => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=sakila;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(["https://localhost:7051", "http://localhost:5154"]);
+        policy.WithMethods("GET");
+        policy.AllowAnyHeader();
+
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors();
 
 app.MapGet("/", () => "Hello Api!");
 

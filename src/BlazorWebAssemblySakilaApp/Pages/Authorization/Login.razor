@@ -1,0 +1,43 @@
+﻿@page "/login"
+@inject ILocalStorageService storage
+@inject CustomAuthenticationStateProvider AuthenticationStateProvider
+@using BlazorWebAssemblySakilaApp.Model
+@using Blazored.LocalStorage
+
+
+<h3>Login</h3>
+
+<EditForm Model="model" OnValidSubmit="LoginAsync">
+
+    <div>
+        <label>Username: </label>
+        <InputText @bind-Value="model.Username" />
+    </div>
+
+    <div>
+        <label>Password: </label>
+        <InputText @bind-Value="model.Password" />
+    </div>
+
+    <button class="btn btn-primary">Login</button>
+   
+</EditForm>
+
+<button class="btn btn-danger" @onclick="LogoutAsync">Logout</button>
+
+
+@code {
+
+    private LoginModel model = new LoginModel();
+
+    private async Task LoginAsync()
+    {
+        await AuthenticationStateProvider.LoginAsync(model);
+    }
+
+    private async Task LogoutAsync()
+    {
+        await AuthenticationStateProvider.LogoutAsync();
+    }
+
+}
