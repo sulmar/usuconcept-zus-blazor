@@ -6,14 +6,9 @@
 
 <h3>Films</h3>
 
-@if (films == null)
-{
-    <p>Loading films...</p>
-}
-else
-{
-    <GenericTable Items="@films">
+<Loading Items="@films">
 
+    <GenericTable Items="@films">        
         <HeaderTemplate>
             <th>Title</th>
             <th>Description</th>
@@ -28,7 +23,7 @@ else
             <td>@film.Rating</td>
         </RowTemplate>
     </GenericTable>
-}
+</Loading>
 
 
 @code {
