@@ -15,7 +15,7 @@ Podczas ładowania filmów powinien pojawić się tekst _`Loading films...`
 
 # Zadanie 2 Lista aktorów
 
-Utwórz aplikację webową Blazor Web Assembly Standalone, która wyświetli listę aktorów z bazy danych Sakila.
+Utwórz aplikację webową **Blazor Web Assembly Standalone**, która wyświetli listę aktorów z bazy danych Sakila.
 
 Pod wejściu na stronę pod adresem `http://localhost:5000/actors` powinna pojawić lista aktorów:
 	
