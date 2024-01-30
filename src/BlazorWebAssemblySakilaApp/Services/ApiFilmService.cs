@@ -3,17 +3,10 @@ using System.Net.Http.Json;
 
 namespace BlazorWebAssemblySakilaApp.Services;
 
-public class ApiFilmService
+public class ApiFilmService(HttpClient http)
 {
-    private readonly HttpClient Http;
-
-    public ApiFilmService(HttpClient http)
-    {
-        Http = http;
-    }
-
     public async Task<List<Film>> GetAllAsync()
     {
-        return await Http.GetFromJsonAsync<List<Film>>("films");
+        return await http.GetFromJsonAsync<List<Film>>("films");
     }
 }
