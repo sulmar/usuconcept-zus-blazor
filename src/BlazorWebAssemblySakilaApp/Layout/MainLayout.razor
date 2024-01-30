@@ -6,8 +6,26 @@
 
     <main>
         <div class="top-row px-4">
+
+            <AuthorizeView>
+                <Authorized>
+                    <div>Hello @context.User.Identity?.Name</div>
+                </Authorized>
+
+                <NotAuthorized>
+                    <NavLink class="nav-link" href="login">
+                        Login
+                    </NavLink>
+                </NotAuthorized>
+
+                <Authorizing>
+                    <div>Authorizing...</div>
+                </Authorizing>
+            </AuthorizeView>
+
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div>
+
 
         <article class="content px-4">
             @Body
