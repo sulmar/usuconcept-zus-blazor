@@ -1,5 +1,5 @@
 ﻿@page "/films"
-@inject HttpClient Http
+@inject ApiFilmService Api
 
 <h3>Films</h3>
 
@@ -40,7 +40,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        films = await Http.GetFromJsonAsync<List<Film>>("films");
+        films = await Api.GetAllAsync();
     }
 
 
