@@ -1,0 +1,32 @@
+﻿<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Release Year</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var film in Films)
+        {
+            <tr>
+                <td>@film.Title</td>
+                <td>@film.Description</td>
+                <td>@film.ReleaseYear</td>
+                <td>@film.Rating</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+@code {
+
+    [Parameter]
+    public List<Film> Films { get; set; }
+
+
+}
