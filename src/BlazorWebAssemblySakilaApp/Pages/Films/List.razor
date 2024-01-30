@@ -1,15 +1,46 @@
 ﻿@page "/films"
+@inject HttpClient Http
 
-<h3>List</h3>
+<h3>Films</h3>
+
+@if (films == null)
+{
+    <p>Loading films...</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Release Year</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var film in films)
+            {
+                <tr>
+                    <td>@film.Title</td>
+                    <td>@film.Description</td>
+                    <td>@film.ReleaseYear</td>
+                    <td>@film.Rating</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
 
 @code {
     private List<Film> films;
 
-
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        // TODO: Pobierz listę filmów z API
-        return base.OnInitializedAsync();
+        films = await Http.GetFromJsonAsync<List<Film>>("films");
     }
 
 
