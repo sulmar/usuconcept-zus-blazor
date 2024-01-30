@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 
 namespace BlazorWebAssemblySakilaApp.Services;
 
-public class ApiFilmService : IFilmService
+public class ApiFilmService
 {
     private readonly HttpClient Http;
 
