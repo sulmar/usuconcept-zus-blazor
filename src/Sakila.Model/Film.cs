@@ -1,4 +1,4 @@
-﻿namespace BlazorSSRSakilaApp.Model;
+﻿namespace Sakila.Model;
 
 public class Film
 {

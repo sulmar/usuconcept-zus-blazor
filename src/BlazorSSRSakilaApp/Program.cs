@@ -1,8 +1,8 @@
-using BlazorSSRSakilaApp.Abstractions;
 using BlazorSSRSakilaApp.Components;
-using BlazorSSRSakilaApp.Infrastructure;
+using Sakila.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Sakila.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 

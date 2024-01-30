@@ -1,8 +1,8 @@
-﻿using BlazorSSRSakilaApp.Abstractions;
-using BlazorSSRSakilaApp.Model;
+﻿using Sakila.Abstractions;
+using Sakila.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorSSRSakilaApp.Infrastructure;
+namespace Sakila.Infrastructure;
 
 public class DbFilmRepository : IFilmRepository
 {

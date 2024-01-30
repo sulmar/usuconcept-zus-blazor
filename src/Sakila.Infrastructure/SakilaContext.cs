@@ -1,7 +1,7 @@
-﻿using BlazorSSRSakilaApp.Model;
+﻿using Sakila.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazorSSRSakilaApp.Infrastructure;
+namespace Sakila.Infrastructure;
 
 // dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 public class SakilaContext : DbContext
