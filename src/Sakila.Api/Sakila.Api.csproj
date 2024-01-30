@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorSSRSakilaApp\BlazorSSRSakilaApp.csproj" />
     <ProjectReference Include="..\Sakila.Abstractions\Sakila.Abstractions.csproj" />
     <ProjectReference Include="..\Sakila.Infrastructure\Sakila.Infrastructure.csproj" />
     <ProjectReference Include="..\Sakila.Model\Sakila.Model.csproj" />
