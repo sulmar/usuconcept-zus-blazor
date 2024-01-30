@@ -1,25 +1,24 @@
 ﻿<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Release Year</th>
-            <th>Rating</th>
-        </tr>
-    </thead>
-    <tbody>
 
+    @if (HeaderTemplate is not null)
+    {
+        <thead>
+            <tr>
+                @HeaderTemplate
+            </tr>
+        </thead>
+    }
+
+    <tbody>
         @foreach (var film in Films)
         {
             <tr>
-                <td>@film.Title</td>
-                <td>@film.Description</td>
-                <td>@film.ReleaseYear</td>
-                <td>@film.Rating</td>
+                @RowTemplate(film)
             </tr>
         }
 
     </tbody>
+
 
 </table>
 
@@ -27,6 +26,12 @@
 
     [Parameter]
     public List<Film> Films { get; set; }
+
+    [Parameter]
+    public RenderFragment HeaderTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<Film> RowTemplate { get; set; }
 
 
 }

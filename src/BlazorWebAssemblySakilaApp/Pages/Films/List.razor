@@ -12,7 +12,22 @@
 }
 else
 {
-   <FilmTable Films="@films" />
+    <FilmTable Films="@films">
+
+        <HeaderTemplate>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Release Year</th>
+            <th>Rating</th>
+        </HeaderTemplate>
+
+        <RowTemplate Context="film">
+            <td>@film.Title</td>
+            <td>@film.Description</td>
+            <td>@film.ReleaseYear</td>
+            <td>@film.Rating</td>
+        </RowTemplate>
+    </FilmTable>
 }
 
 
