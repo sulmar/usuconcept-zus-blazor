@@ -15,10 +15,17 @@ public class JwtTokenService : ITokenService
 {
     public string CreateToken(UserIdentity userIdentity)
     {
+        JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
+
         Claim[] claims =
         [
             new Claim(ClaimTypes.Name, userIdentity.Email),
             new Claim(ClaimTypes.Email, userIdentity.Email),
+
+            new Claim(JwtRegisteredClaimNames.Sub, userIdentity.Email),
+            new Claim(JwtRegisteredClaimNames.Name, userIdentity.Email),
+            new Claim(JwtRegisteredClaimNames.NameId, userIdentity.Email),
+            new Claim(JwtRegisteredClaimNames.UniqueName, userIdentity.Email),
         ];
 
         ClaimsIdentity identity = new ClaimsIdentity(claims);
