@@ -1,0 +1,45 @@
+﻿@page "/vfilms"
+@inject ApiFilmService Api
+
+<h3>VirtualizationList</h3>
+
+@if (films is not null)
+{
+    <table>
+
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Release Year</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        
+
+        <tbody>
+            @foreach (var film in films)
+            {
+                <tr>
+                    <td>@film.Title</td>
+                    <td>@film.Description</td>
+                    <td>@film.ReleaseYear</td>
+                    <td>@film.Rating</td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+}
+
+@code {
+
+    private List<Film> films;
+
+    protected override async Task OnInitializedAsync()
+    {
+        films = await Api.GetAllAsync();
+    }
+}
