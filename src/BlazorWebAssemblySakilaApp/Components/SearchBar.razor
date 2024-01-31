@@ -1,6 +1,6 @@
 ﻿<div>
     <label>Search: </label>
-    <input type="text" @bind-value="filter" />
+    <input type="text" @bind-value="filter" @ref="filterElementReference" />
 
     <button type="button" @onclick="Search">Search</button>
 </div>
@@ -8,6 +8,16 @@
 @code {
 
     private string filter;
+
+    private ElementReference filterElementReference;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await filterElementReference.FocusAsync();
+        }
+    }
 
     [Parameter]
     public EventCallback<string> OnSearch { get; set; }
