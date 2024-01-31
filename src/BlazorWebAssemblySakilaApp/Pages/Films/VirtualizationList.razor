@@ -19,7 +19,7 @@
 
         <tbody>
 
-            <Virtualize Items="@films" Context="film" SpacerElement="tr" >
+            <Virtualize Context="film" SpacerElement="tr" ItemsProvider="LoadFilms">
 
                 <ItemContent>
                     <tr>
@@ -48,5 +48,12 @@
     protected override async Task OnInitializedAsync()
     {
         films = await Api.GetAllAsync();
+    }
+
+    private async ValueTask<ItemsProviderResult<Film>> LoadFilms(ItemsProviderRequest request)
+    {
+        var response = await Api.GetAllAsync(request.StartIndex, request.Count);
+
+        return new ItemsProviderResult<Film>(response.Films, response.TotalItemCount);
     }
 }

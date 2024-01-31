@@ -18,15 +18,30 @@ public class DbFilmRepository : IFilmRepository
         return context.Films.AsNoTracking().ToListAsync();
     }
 
-    public Task<List<Film>> GetByTextAsync(string? searchText)
+    public Task<List<Film>> GetByTextAsync(SearchCriteria searchCriteria)
     {
         IQueryable<Film> query = context.Films.AsNoTracking().AsQueryable();
 
-        if (!string.IsNullOrEmpty(searchText))
+        if (!string.IsNullOrEmpty(searchCriteria.SearchText))
         {
-            query = query.Where(f => f.Title.Contains(searchText));
+            query = query.Where(f => f.Title.Contains(searchCriteria.SearchText));
         }
 
-        return query.ToListAsync();  
+        if (searchCriteria.StartIndex.HasValue)
+        {
+            query = query.Skip(searchCriteria.StartIndex.Value);
+        }
+
+        if (searchCriteria.Count.HasValue)
+        {
+            query = query.Take(searchCriteria.Count.Value);
+        }
+
+        return query.ToListAsync();
+    }
+
+    public Task<int> GetTotalItemCount()
+    {
+        return context.Films.AsNoTracking().CountAsync();
     }
 }

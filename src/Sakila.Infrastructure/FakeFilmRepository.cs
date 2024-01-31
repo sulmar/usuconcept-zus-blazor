@@ -28,4 +28,14 @@ public class FakeFilmRepository : IFilmRepository
 
         return Task.FromResult(results);
     }
+
+    public Task<List<Film>> GetByTextAsync(SearchCriteria searchCriteria)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> GetTotalItemCount()
+    {
+        throw new NotImplementedException();
+    }
 }

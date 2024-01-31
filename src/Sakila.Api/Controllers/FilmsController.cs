@@ -11,9 +11,13 @@ public class FilmsController(IFilmRepository repository) : ControllerBase
 {
     // GET /films?filter={filter}
     [HttpGet]
-    public async Task<ActionResult<List<Film>>> Get(string? filter)
+    public async Task<ActionResult<List<Film>>> Get([FromQuery] SearchCriteria searchCriteria)
     {       
-        var films = await repository.GetByTextAsync(filter);
+        var films = await repository.GetByTextAsync(searchCriteria);
+
+        var totalItemCount = await repository.GetTotalItemCount();
+
+        HttpContext.Response.Headers.Add("x-total-item-count", totalItemCount.ToString());
 
         return Ok(films);
     }

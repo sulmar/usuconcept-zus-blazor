@@ -15,6 +15,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins( ["https://localhost:7051", "http://localhost:5154"]);
         policy.WithMethods("GET");
         policy.AllowAnyHeader();
+        policy.WithExposedHeaders("x-total-item-count");
 
     });
 });
