@@ -6,6 +6,9 @@
 
 <h3>Films</h3>
 
+<SearchBar OnSearch="Search" />
+
+
 <Loading Items="@films">
 
     <GenericTable Items="@films">        
@@ -28,6 +31,15 @@
 
 @code {
     private List<Film> films;
+
+    private async void Search(string searchText)
+    {
+        films = null;
+
+        films = await Api.GetByFilter(searchText);
+
+        StateHasChanged();
+    }
 
     protected override async Task OnInitializedAsync()
     {

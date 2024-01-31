@@ -9,11 +9,11 @@ namespace Sakila.Api.Controllers;
 [Route("[controller]")]
 public class FilmsController(IFilmRepository repository) : ControllerBase
 {
-    // GET /films
+    // GET /films?filter={filter}
     [HttpGet]
-    public async Task<ActionResult<List<Film>>> Get()
-    {
-        var films = await repository.GetAllAsync();
+    public async Task<ActionResult<List<Film>>> Get(string? filter)
+    {       
+        var films = await repository.GetByTextAsync(filter);
 
         return Ok(films);
     }

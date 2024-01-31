@@ -32,6 +32,8 @@ app.UseCors();
 app.MapGet("/", () => "Hello Api!");
 
 
+
+
 // POST /api/token/create 
 // Content-Type: application/json
 // { "login":"john.smith@domain.com", "passsword":"my_secret_password" }

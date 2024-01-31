@@ -9,4 +9,9 @@ public class ApiFilmService(HttpClient http)
     {
         return await http.GetFromJsonAsync<List<Film>>("films");
     }
+
+    public async Task<List<Film>> GetByFilter(string filter)
+    {
+        return await http.GetFromJsonAsync<List<Film>>($"films?filter={filter}");
+    }
 }

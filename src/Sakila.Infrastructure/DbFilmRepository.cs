@@ -15,22 +15,18 @@ public class DbFilmRepository : IFilmRepository
 
     public Task<List<Film>> GetAllAsync()
     {
-        return context.Films.ToListAsync();
+        return context.Films.AsNoTracking().ToListAsync();
     }
-}
 
-
-public class FakeFilmRepository : IFilmRepository
-{
-    public Task<List<Film>> GetAllAsync()
+    public Task<List<Film>> GetByTextAsync(string? searchText)
     {
-        var films = new List<Film>
-        {
-            new() { Id =  1, Title = "Lorem", Description = "Ipsum", ReleaseYear = "2024", Rating = "PG" },
-            new() { Id =  2, Title = "Lorem", Description = "Ipsum", ReleaseYear = "2024", Rating = "PG" },
-            new() { Id =  3, Title = "Lorem", Description = "Ipsum", ReleaseYear = "2024", Rating = "PG" }
-        };
+        IQueryable<Film> query = context.Films.AsNoTracking().AsQueryable();
 
-        return Task.FromResult(films);
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            query = query.Where(f => f.Title.Contains(searchText));
+        }
+
+        return query.ToListAsync();  
     }
 }
