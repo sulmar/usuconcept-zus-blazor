@@ -18,16 +18,23 @@
         
 
         <tbody>
-            @foreach (var film in films)
-            {
-                <tr>
-                    <td>@film.Title</td>
-                    <td>@film.Description</td>
-                    <td>@film.ReleaseYear</td>
-                    <td>@film.Rating</td>
-                </tr>
-            }
 
+            <Virtualize Items="@films" Context="film" SpacerElement="tr" >
+
+                <ItemContent>
+                    <tr>
+                        <td>@film.Title</td>
+                        <td>@film.Description</td>
+                        <td>@film.ReleaseYear</td>
+                        <td>@film.Rating</td>
+                    </tr>
+                </ItemContent>
+            
+                <Placeholder>
+                    <p>Loading item...</p>
+                </Placeholder>
+
+            </Virtualize>
         </tbody>
 
 
