@@ -2,7 +2,9 @@
 @using BlazorWebAssemblySakilaApp.Components
 @using Microsoft.AspNetCore.Authorization
 @inject ApiFilmService Api
+@inject NavigationManager NavigationManager
 @attribute [Authorize]
+
 
 <h3>Films</h3>
 
@@ -11,19 +13,25 @@
 
 <Loading Items="@films">
 
-    <GenericTable Items="@films">        
+    <GenericTable Items="@films">
         <HeaderTemplate>
             <th>Title</th>
             <th>Description</th>
             <th>Release Year</th>
             <th>Rating</th>
+            <th>Actions</th>
         </HeaderTemplate>
 
         <RowTemplate Context="film">
-            <td>@film.Title</td>
+            <td><a href="/films/@film.Id">@film.Title</a></td>
             <td>@film.Description</td>
             <td>@film.ReleaseYear</td>
             <td>@film.Rating</td>
+
+            <td>
+                <a href="/films/@film.Id" class="btn btn-primary">View</a>
+                <button type="button" @onclick=@(()=>Update(film)) class="btn btn-secondary">Update</button>
+            </td>
         </RowTemplate>
     </GenericTable>
 </Loading>
@@ -44,6 +52,14 @@
     protected override async Task OnInitializedAsync()
     {
         films = await Api.GetAllAsync();
+    }
+
+    private async Task Update(Film film)
+    {
+        // TODO: update film 
+
+
+        NavigationManager.NavigateTo("/");
     }
 
 
