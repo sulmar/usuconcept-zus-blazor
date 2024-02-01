@@ -25,10 +25,23 @@ public class JwtTokenService : ITokenService
             new Claim(JwtRegisteredClaimNames.Sub, userIdentity.Email),
             new Claim(JwtRegisteredClaimNames.Name, userIdentity.Email),
             new Claim(JwtRegisteredClaimNames.NameId, userIdentity.Email),
-            new Claim(JwtRegisteredClaimNames.UniqueName, userIdentity.Email),
+            new Claim(JwtRegisteredClaimNames.UniqueName, userIdentity.Email),            
         ];
 
         ClaimsIdentity identity = new ClaimsIdentity(claims);
+        identity.AddClaim( new Claim(ClaimTypes.Role, $"store-{userIdentity.StoreId}"));
+
+        if (userIdentity.FirstName.EndsWith("A"))
+        {
+            identity.AddClaim(new Claim("rating", "PG"));
+            identity.AddClaim(new Claim("rating", "G"));
+            identity.AddClaim(new Claim("rating", "PG-13"));
+        }
+        else
+        {
+            identity.AddClaim(new Claim("rating", "R"));
+            identity.AddClaim(new Claim("rating", "NC17"));
+        }
 
         var tokenHandler = new JwtSecurityTokenHandler();
 

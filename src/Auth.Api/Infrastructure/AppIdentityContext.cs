@@ -34,6 +34,10 @@ public class AppIdentityContext : DbContext
         modelBuilder.Entity<UserIdentity>()
             .Ignore(p => p.HashedPassword);
 
+        modelBuilder.Entity<UserIdentity>()
+            .Property(p => p.StoreId)
+            .HasColumnName("store_id");
+
         base.OnModelCreating(modelBuilder);
     }
 }
