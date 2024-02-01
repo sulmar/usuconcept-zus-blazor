@@ -9,6 +9,14 @@
 <button class="btn btn-secondary" @onclick="SetToken">Set Token</button>
 <button class="btn btn-secondary" @onclick="GetToken">Get Token</button>
 
+<p>
+    <label>Name: 
+        <input @bind-value="name" />
+    </label>
+
+    <button class="btn btn-primary" @onclick="TriggerDotNetInstanceMethod">Trigger .net instance method</button>
+</p>
+
 @code {
 
     private async Task LogToConsole()
@@ -54,5 +62,40 @@
     {
         return await JS.InvokeAsync<object>("localStorage.getItem", key);
     }
+
+    // JS:
+    // DotNet.invokeMethodAsync(assembly_name, method_name);
+    // DotNet.invokeMethodAsync('BlazorWebAssemblySakilaApp', 'GetFromValueMethod').then(data=>console.log(data))
+
+    [JSInvokable]
+    public static Task<string> GetFromValueMethod()
+    {
+        return Task.FromResult("Hello Blazor!");
+    }
+
+    private string name;
+
+    public async Task TriggerDotNetInstanceMethod()
+    {
+        Customer customer = new Customer { Name = name };
+
+        DotNetObjectReference<Customer> customerRef = DotNetObjectReference.Create(customer);
+
+        await JS.InvokeVoidAsync("test", customerRef);
+    }
+
+    public class Customer
+    {
+        public string Name { get; set; }
+
+        [JSInvokable]
+        public void DoWork()
+        {
+            Console.WriteLine($"Working {Name}");
+        }
+
+
+    }
+
 
 }

@@ -1,10 +1,13 @@
 using Blazored.LocalStorage;
 using BlazorWebAssemblySakilaApp;
+using BlazorWebAssemblySakilaApp.Model;
 using BlazorWebAssemblySakilaApp.Services;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -22,6 +25,16 @@ builder.Services.AddAuthorizationCore();
 // W pliku App.razor zamieñ RouteView na AuthorizeRouteView
 
 builder.Services.AddCascadingAuthenticationState();
+
+// Globalna rejestracja parametru kaskadowego
+// builder.Services.AddCascadingValue(sp => new MyContext { Count = 10 });
+
+builder.Services.AddCascadingValue(sp =>
+{
+    var context = new MyContext { Count = 10 };
+    var source = new CascadingValueSource<MyContext>(context, isFixed: false);
+    return source;
+});
 
 builder.Services.AddScoped<CustomAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider>(sp => sp.GetRequiredService<CustomAuthenticationStateProvider>());
