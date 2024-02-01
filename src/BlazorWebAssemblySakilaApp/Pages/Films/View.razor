@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">@Film.Title</h4>
-            <p class="card-text">@html</p>
+            <p class="card-text"><HtmlComponent Html="@Film.Description"/></p>
         </div>
     </div>
 }
@@ -21,13 +21,9 @@
 
     public Film Film { get; set; }
 
-    private MarkupString html;
-
     protected override async Task OnParametersSetAsync()
     {
         Film = await Api.GetById(Id);
-
-        html = new MarkupString(Film.Description);
     }
 
 }

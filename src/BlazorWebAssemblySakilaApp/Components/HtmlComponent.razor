@@ -1,0 +1,17 @@
+﻿
+@html
+
+@code {
+
+    [Parameter]
+    public string Html { get; set; }
+
+    private MarkupString html;
+
+    protected override void OnInitialized()
+    {
+        html = new MarkupString(Html);
+    }
+
+
+}
