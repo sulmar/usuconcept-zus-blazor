@@ -1,6 +1,11 @@
 ﻿@page "/counter"
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+@implements IDisposable
 
 <PageTitle>Counter</PageTitle>
+
+<NavigationLock ConfirmExternalNavigation="true" OnBeforeInternalNavigation="BeforeInternalNavigation" />
 
 <h1>Counter</h1>
 
@@ -9,10 +14,51 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+
+    private bool changed => currentCount > 0;
+
     private int currentCount = 0;
+
+    private IDisposable registration;
+
 
     private void IncrementCount()
     {
         currentCount++;
+
+        
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            registration = NavigationManager.RegisterLocationChangingHandler(LocationChangingHandler);
+        }
+    }
+
+    private ValueTask LocationChangingHandler(LocationChangingContext arg)
+    {
+        Console.WriteLine("Location is changing...");
+
+        return ValueTask.CompletedTask;
+    }
+
+    private async Task BeforeInternalNavigation(LocationChangingContext context)
+    {
+        if (changed)
+        {
+            var proceed = await JS.InvokeAsync<bool>("window.confirm", "Are you sure you want to leave window?");
+
+            if (!proceed)
+                context.PreventNavigation();
+
+        }
+    }
+
+
+    public void Dispose()
+    {
+        registration?.Dispose();
     }
 }
