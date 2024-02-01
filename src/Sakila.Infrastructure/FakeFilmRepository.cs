@@ -22,6 +22,11 @@ public class FakeFilmRepository : IFilmRepository
         return Task.FromResult(films);
     }
 
+    public Task<Film> GetByIdAsync(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<List<Film>> GetByTextAsync(string searchText)
     {
         var results = films.Where(f => f.Title.Contains(searchText)).ToList();

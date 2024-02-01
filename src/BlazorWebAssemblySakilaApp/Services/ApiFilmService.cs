@@ -18,6 +18,11 @@ public class FilmsResponse
 
 public class ApiFilmService(HttpClient http)
 {
+    public async Task<Film> GetById(int id)
+    {
+        return await http.GetFromJsonAsync<Film>($"films/{id}");
+    }
+
     public async Task<List<Film>> GetAllAsync()
     {
         return await http.GetFromJsonAsync<List<Film>>("films");

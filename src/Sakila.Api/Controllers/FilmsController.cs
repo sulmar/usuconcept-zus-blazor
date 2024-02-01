@@ -21,4 +21,16 @@ public class FilmsController(IFilmRepository repository) : ControllerBase
 
         return Ok(films);
     }
+
+    // GET /films/{id}
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Film>> GetById(int id)
+    {
+        var film = await repository.GetByIdAsync(id);
+
+        if (film is null)
+            return NotFound();
+
+        return Ok(film);
+    }
 }

@@ -18,6 +18,11 @@ public class DbFilmRepository : IFilmRepository
         return context.Films.AsNoTracking().ToListAsync();
     }
 
+    public async Task<Film> GetByIdAsync(int id)
+    {
+        return await context.Films.FindAsync(id);
+    }
+
     public Task<List<Film>> GetByTextAsync(SearchCriteria searchCriteria)
     {
         IQueryable<Film> query = context.Films.AsNoTracking().AsQueryable();

@@ -1,0 +1,33 @@
+﻿@page "/films/{id:int}"
+@inject ApiFilmService Api
+
+<h3>View</h3>
+
+@if (Film is not null)
+{
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">@Film.Title</h4>
+            <p class="card-text">@html</p>
+        </div>
+    </div>
+}
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public Film Film { get; set; }
+
+    private MarkupString html;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Film = await Api.GetById(Id);
+
+        html = new MarkupString(Film.Description);
+    }
+
+}

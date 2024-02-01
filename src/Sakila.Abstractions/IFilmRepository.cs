@@ -7,6 +7,7 @@ public interface IFilmRepository
     Task<List<Film>> GetAllAsync();
     Task<List<Film>> GetByTextAsync(SearchCriteria searchCriteria);
     Task<int> GetTotalItemCount();
+    Task<Film> GetByIdAsync(int id);
 }
 
 
