@@ -43,6 +43,9 @@ public class JwtTokenService : ITokenService
             identity.AddClaim(new Claim("rating", "NC17"));
         }
 
+        // TODO: pobierz datę urodzenia z klienta
+        identity.AddClaim(new Claim(ClaimTypes.DateOfBirth, DateTime.Parse("2010-01-01").ToShortDateString()));
+
         var tokenHandler = new JwtSecurityTokenHandler();
 
         string secretKey = "your-256-bit-secret-your-256-bit-secret-your-256-bit-secret";

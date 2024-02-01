@@ -6,7 +6,7 @@
 @inject NavigationManager NavigationManager
 
 
-@attribute [Authorize(Roles = "store-2,store-3")]
+@attribute [Authorize(Roles = "store-2,store-3", Policy = "Adult")]
 
 
 <h3>Films</h3>

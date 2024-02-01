@@ -1,7 +1,9 @@
 using Blazored.LocalStorage;
 using BlazorWebAssemblySakilaApp;
+using BlazorWebAssemblySakilaApp.Authorization;
 using BlazorWebAssemblySakilaApp.Model;
 using BlazorWebAssemblySakilaApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,7 +21,12 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddHttpClient<ApiFilmService>(sp => sp.BaseAddress = new Uri("https://localhost:7131"));
 builder.Services.AddHttpClient<ApiAuthService>(sp => sp.BaseAddress = new Uri("https://localhost:7119"));
 
-builder.Services.AddAuthorizationCore();
+builder.Services.AddAuthorizationCore(options =>
+{
+    options.AddPolicy("Adult", Policies.AdultPolicy());
+});
+
+builder.Services.AddScoped<IAuthorizationHandler, AgeAuthorizationHandler>();
 
 // dotnet add package Microsoft.AspNetCore.Components.Authorization
 // W pliku App.razor zamieñ RouteView na AuthorizeRouteView
