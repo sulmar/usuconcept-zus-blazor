@@ -1,0 +1,58 @@
+﻿@page "/jsinterop"
+@inject IJSRuntime JS
+
+
+<h3>JsInterop</h3>
+
+<button class="btn btn-primary" @onclick="LogToConsole">Log To Console</button>
+<button class="btn btn-secondary" @onclick="ShowConfirm">Show Confirm</button>
+<button class="btn btn-secondary" @onclick="SetToken">Set Token</button>
+<button class="btn btn-secondary" @onclick="GetToken">Get Token</button>
+
+@code {
+
+    private async Task LogToConsole()
+    {
+        await ConsoleLog("Hello World!");
+    }
+
+    private async Task ConsoleLog(string message)
+    {
+        await JS.InvokeVoidAsync("console.log", message);
+    }
+
+    private async Task ShowConfirm()
+    {
+        var result = await Confirm("Are you sure?");
+
+        Console.WriteLine(result);
+    }
+
+    private async Task<bool> Confirm(string message)
+    {
+        return await JS.InvokeAsync<bool>("confirm", message);        
+    }
+
+    private async Task SetToken()
+    {
+        await SetItem("token", "abc");
+    }
+
+    private async Task GetToken()
+    {
+        var token = await GetItem("token");
+
+        Console.WriteLine(token);
+    }
+
+    private async Task SetItem(string key, object value)
+    {
+        await JS.InvokeVoidAsync("localStorage.setItem", key, value);
+    }
+
+    private async Task<object> GetItem(string key)
+    {
+        return await JS.InvokeAsync<object>("localStorage.getItem", key);
+    }
+
+}
