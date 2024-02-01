@@ -1,0 +1,25 @@
+﻿@page "/cascadingparameters"
+
+<h3>Cascading Parameters</h3>
+
+
+<CascadingValue Value="@style" Name="StyleParameter">
+    <CascadingValue Value="@text" Name="MessageParameter">
+        <ParentComponent />
+    </CascadingValue>
+</CascadingValue>
+
+
+<strong>@MyContext.Count</strong>
+
+
+@code {
+    private string text = "Hello Child!";
+
+
+    private string style = "danger";
+
+    [CascadingParameter]
+    public MyContext MyContext { get; set;  }
+
+}

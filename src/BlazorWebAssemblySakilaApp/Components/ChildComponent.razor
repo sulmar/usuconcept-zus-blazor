@@ -1,0 +1,26 @@
+﻿@using BlazorWebAssemblySakilaApp.Model
+
+<div class="alert alert-@Style">
+    @Message 
+    <p>Counter is: @MyContext.Count</p>
+</div>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+
+    [CascadingParameter(Name = "MessageParameter")]
+    public string Message { get; set; }
+
+    [CascadingParameter(Name = "StyleParameter")]
+    public string Style { get; set;  }
+
+    [CascadingParameter]
+    public MyContext MyContext { get; set; }
+
+    private void IncrementCount(MouseEventArgs e)
+    {
+        MyContext.Count++;        
+        StateHasChanged();
+    }
+}
