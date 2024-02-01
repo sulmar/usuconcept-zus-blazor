@@ -30,6 +30,8 @@
 
             <td>
                 <a href="/films/@film.Id" class="btn btn-primary">View</a>
+                <a href="/films/edit/@film.Id" class="btn btn-primary">Edit</a>
+
                 <button type="button" @onclick=@(()=>Update(film)) class="btn btn-secondary">Update</button>
             </td>
         </RowTemplate>

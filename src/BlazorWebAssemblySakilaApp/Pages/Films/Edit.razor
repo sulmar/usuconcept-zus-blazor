@@ -1,0 +1,61 @@
+﻿@page "/films/edit/{id:int}"
+@inject ApiFilmService Api
+
+@if (Film is not null)
+{
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">@Film.Title</h4>
+            <p class="card-text">
+
+                <EditForm Model="Film" OnValidSubmit="HandleValidSubmit">
+
+                    <FluentValidationValidator />
+
+                    <ValidationSummary />
+
+                    <div class="form-group">
+                        <label>Title: </label>
+                        <InputText @bind-Value="Film.Title" class="form-control" />
+                        <ValidationMessage For="()=>Film.Title" />
+                    </div>
+                    <div class="form-group">
+                        <label>Rental Duration: </label>
+                        <InputNumber @bind-Value="Film.RentalDuration" class="form-control" />
+                        <ValidationMessage For="()=>Film.RentalDuration" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rental Rate: </label>
+                        <InputNumber @bind-Value="Film.RentalRate" class="form-control" />
+                        <ValidationMessage For="()=>Film.RentalRate" />
+                    </div>
+
+                    <div class="row">
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </EditForm>
+
+            </p>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    public Film Film { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Film = await Api.GetById(Id);
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        
+    }
+
+}

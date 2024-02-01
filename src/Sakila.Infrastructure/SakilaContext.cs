@@ -35,6 +35,15 @@ public class SakilaContext : DbContext
             .Property(p => p.ReleaseYear)
             .HasColumnName("release_year");
 
+        modelBuilder.Entity<Film>()
+            .Property(p => p.RentalDuration)
+            .HasColumnName("rental_duration")
+            .HasColumnType("tinyint");
+
+        modelBuilder.Entity<Film>()
+            .Property(p => p.RentalRate)
+            .HasColumnName("rental_rate");
+
         base.OnModelCreating(modelBuilder);
     }
 }

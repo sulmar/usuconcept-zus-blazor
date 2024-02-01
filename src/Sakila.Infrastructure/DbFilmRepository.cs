@@ -20,7 +20,7 @@ public class DbFilmRepository : IFilmRepository
 
     public async Task<Film> GetByIdAsync(int id)
     {
-        return await context.Films.FindAsync(id);
+            return await context.Films.FindAsync(id);
     }
 
     public Task<List<Film>> GetByTextAsync(SearchCriteria searchCriteria)
