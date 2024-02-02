@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Api", "Auth.Api\Auth.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiBlazorApp", "MauiBlazorApp\MauiBlazorApp.csproj", "{517A441C-1EB2-455B-9CAF-839336926E24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardLibrary", "DashboardLibrary\DashboardLibrary.csproj", "{2BE191B9-3DF0-4EDA-8E23-00C0731DCE45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{517A441C-1EB2-455B-9CAF-839336926E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{517A441C-1EB2-455B-9CAF-839336926E24}.Release|Any CPU.Build.0 = Release|Any CPU
 		{517A441C-1EB2-455B-9CAF-839336926E24}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2BE191B9-3DF0-4EDA-8E23-00C0731DCE45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE191B9-3DF0-4EDA-8E23-00C0731DCE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE191B9-3DF0-4EDA-8E23-00C0731DCE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE191B9-3DF0-4EDA-8E23-00C0731DCE45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

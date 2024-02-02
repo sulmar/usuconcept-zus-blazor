@@ -20,7 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DashboardLibrary\DashboardLibrary.csproj" />
     <ProjectReference Include="..\Sakila.Model\Sakila.Model.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<BlazorWebAssemblyLazyLoad Include="DashboardLibrary.wasm" />
+	</ItemGroup>
 
 </Project>
