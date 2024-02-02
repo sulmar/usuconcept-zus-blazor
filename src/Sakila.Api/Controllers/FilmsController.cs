@@ -1,5 +1,4 @@
-﻿using Sakila.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sakila.Abstractions;
 using Sakila.Model;
 

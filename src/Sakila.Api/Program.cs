@@ -6,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<SakilaContext>(optionsBuilder => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=sakila;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
+
 builder.Services.AddScoped<IFilmRepository, DbFilmRepository>();
+builder.Services.AddScoped<IRentalRepository, DbRentalRepository>();
 
 builder.Services.AddCors(options =>
 {

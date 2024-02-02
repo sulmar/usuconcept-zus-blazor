@@ -19,6 +19,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 // dotnet add package Microsoft.Extensions.Http
 builder.Services.AddHttpClient<ApiFilmService>(sp => sp.BaseAddress = new Uri("https://localhost:7131"));
+builder.Services.AddHttpClient<ApiRentalService>(sp => sp.BaseAddress = new Uri("https://localhost:7131"));
 builder.Services.AddHttpClient<ApiAuthService>(sp => sp.BaseAddress = new Uri("https://localhost:7119"));
 
 builder.Services.AddAuthorizationCore(options =>

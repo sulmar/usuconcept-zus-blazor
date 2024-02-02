@@ -1,0 +1,38 @@
+﻿@page "/rentals"
+@inject ApiRentalService Api
+@attribute [Authorize]
+
+<h3>List</h3>
+
+<Loading Items="@rentals">
+
+    <GenericTable Items="@rentals">
+        <HeaderTemplate>
+            <th>Rental Date</th>
+            <th>Return Date</th>
+            <th>Customer Id</th>         
+            <th>Actions</th>
+        </HeaderTemplate>
+
+        <RowTemplate Context="rental">            
+            <td>@rental.RentalDate</td>
+            <td>@rental.ReturnDate</td>
+            <td>@rental.CustomerId</td>
+
+            <td>
+                <a href="/rentals/@rental.Id" class="btn btn-primary">View</a>                
+            </td>
+        </RowTemplate>
+    </GenericTable>
+</Loading>
+
+@code {
+
+    private List<Rental> rentals;
+
+    protected override async Task OnInitializedAsync()
+    {
+        rentals = await Api.GetAllAsync();
+    }
+
+}
