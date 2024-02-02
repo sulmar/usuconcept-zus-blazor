@@ -1,4 +1,10 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using BlazorWebAssemblySakilaApp.Features.Counter
+@using Fluxor
+@using Fluxor.Blazor.Web.Components
+@inject IState<CounterState> CounterState
+@inherits FluxorComponent
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">BlazorWebAssemblySakilaApp</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -16,7 +22,7 @@
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter (@CounterState.Value.CurrentCount)
             </NavLink>
         </div>
         <div class="nav-item px-3">

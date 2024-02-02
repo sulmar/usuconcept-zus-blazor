@@ -3,6 +3,7 @@ using BlazorWebAssemblySakilaApp;
 using BlazorWebAssemblySakilaApp.Authorization;
 using BlazorWebAssemblySakilaApp.Model;
 using BlazorWebAssemblySakilaApp.Services;
+using Fluxor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -52,5 +53,19 @@ builder.Services.AddScoped<AuthenticationStateProvider>(sp => sp.GetRequiredServ
 
 // dotnet add package Blazored.LocalStorage
 builder.Services.AddBlazoredLocalStorage();
+
+
+// dotnet add package Fluxor
+// dotnet add package Fluxor.Blazor.Web
+// dotnet add package Fluxor.Blazor.Web.ReduxDevTools
+
+builder.Services.AddFluxor(options =>
+{
+    options.ScanAssemblies(typeof(Program).Assembly);
+    options.UseReduxDevTools(o =>
+    {
+        o.Name = "SakilaApp";
+    });
+});
 
 await builder.Build().RunAsync();
