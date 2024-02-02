@@ -25,9 +25,11 @@ builder.Services.AddHttpClient<ApiAuthService>(sp => sp.BaseAddress = new Uri("h
 builder.Services.AddAuthorizationCore(options =>
 {
     options.AddPolicy("Adult", Policies.AdultPolicy());
+    options.AddPolicy("ReturnPolicy", policy => policy.Requirements.Add(new OwnerRequirement()));
 });
 
 builder.Services.AddScoped<IAuthorizationHandler, AgeAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, RentalAuthorizationHandler>();
 
 // dotnet add package Microsoft.AspNetCore.Components.Authorization
 // W pliku App.razor zamieñ RouteView na AuthorizeRouteView

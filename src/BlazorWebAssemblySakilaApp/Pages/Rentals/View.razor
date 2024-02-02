@@ -1,5 +1,6 @@
 ﻿@page "/rentals/{id:int}"
 @inject ApiRentalService Api
+@inject IAuthorizationService AuthorizationService
 
 <h3>View</h3>
 
@@ -11,8 +12,10 @@
 
             <p class="card-text">
 
-                <button class="btn btn-primary">Return</button>
-
+                @if (CanReturn)
+                {
+                    <button class="btn btn-primary">Return</button>
+                }
             </p>
         </div>
     </div>
@@ -27,10 +30,24 @@
 
     public Rental Rental { get; set; }
 
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private bool CanReturn;
+
 
     protected override async Task OnParametersSetAsync()
     {
         Rental = await Api.GetById(Id);
+
+        var state = await authenticationState;
+
+        var user = state.User;
+
+        var result = await AuthorizationService.AuthorizeAsync(user, Rental, "ReturnPolicy");
+
+        CanReturn = result.Succeeded;
+
     }
 
 }

@@ -21,6 +21,7 @@ public class JwtTokenService : ITokenService
         [
             new Claim(ClaimTypes.Name, userIdentity.Email),
             new Claim(ClaimTypes.Email, userIdentity.Email),
+            new Claim(ClaimTypes.NameIdentifier, userIdentity.Id.ToString()),
 
             new Claim(JwtRegisteredClaimNames.Sub, userIdentity.Email),
             new Claim(JwtRegisteredClaimNames.Name, userIdentity.Email),
