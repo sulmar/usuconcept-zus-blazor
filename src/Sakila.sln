@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sakila.Infrastructure", "Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{9DBDB8AD-E1D5-4A68-A5A5-487C6B7E0435}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiBlazorApp", "MauiBlazorApp\MauiBlazorApp.csproj", "{517A441C-1EB2-455B-9CAF-839336926E24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,12 @@ Global
 		{9DBDB8AD-E1D5-4A68-A5A5-487C6B7E0435}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DBDB8AD-E1D5-4A68-A5A5-487C6B7E0435}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DBDB8AD-E1D5-4A68-A5A5-487C6B7E0435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{517A441C-1EB2-455B-9CAF-839336926E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{517A441C-1EB2-455B-9CAF-839336926E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{517A441C-1EB2-455B-9CAF-839336926E24}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{517A441C-1EB2-455B-9CAF-839336926E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{517A441C-1EB2-455B-9CAF-839336926E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{517A441C-1EB2-455B-9CAF-839336926E24}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
