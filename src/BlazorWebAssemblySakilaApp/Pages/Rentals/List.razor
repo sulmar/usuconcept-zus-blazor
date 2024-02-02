@@ -1,12 +1,24 @@
 ﻿@page "/rentals"
-@inject ApiRentalService Api
+@using BlazorWebAssemblySakilaApp.Features.Rentals
+@using Fluxor
+@using Fluxor.Blazor.Web.Components
+@* @inject ApiRentalService Api *@
 @attribute [Authorize]
+@inject IDispatcher Dispatcher
+@inject IState<RentalsState> RentalsState
+@inherits FluxorComponent
 
 <h3>List</h3>
 
-<Loading Items="@rentals">
 
-    <GenericTable Items="@rentals">
+@if (RentalsState.Value.IsLoading)
+{
+    <p>Loading rentals...</p>
+}
+else
+{
+
+    <GenericTable Items="@RentalsState.Value.Rentals">
         <HeaderTemplate>
             <th>Rental Date</th>
             <th>Return Date</th>
@@ -24,15 +36,17 @@
             </td>
         </RowTemplate>
     </GenericTable>
-</Loading>
+}
+
 
 @code {
 
-    private List<Rental> rentals;
+   // private List<Rental> rentals;
 
     protected override async Task OnInitializedAsync()
     {
-        rentals = await Api.GetAllAsync();
+        // rentals = await Api.GetAllAsync();
+        Dispatcher.Dispatch(new FetchRentalsAction());
     }
 
 }
